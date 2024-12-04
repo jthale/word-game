@@ -5,6 +5,7 @@ import { Preview } from './preview.js';
 import { key, userKey, startingSolver } from './helpers.js';
 import { Phrase } from './phrase.js';
 import { Guess } from './guess.js';
+import { Guessed } from './components/guessed.js'
 
 Devvit.configure({
   redis: true,
@@ -93,12 +94,16 @@ const App: Devvit.CustomPostComponent = (context) => {
   const [word, setWord] = useState<string | undefined>(undefined);
   const [isSolved, setIsSolved] = useState<boolean>(false);
   const [solved, setSolved] = useState<string | undefined>(undefined);
+  const [hasGuessed, setHasGuessed] = useState<boolean>(false);
 
+
+  // TODO: Reload every 20 sec with a timer indicator?
   const loadContent = async () => {
     try {
       setIsSolved(await redis.hGet(key('word', postId), 'isSolved') === "true");
       setWord(await redis.hGet(key('word', postId), 'word'));
       setSolved(await redis.hGet(key('word', postId), 'solved'));
+      setHasGuessed(!!(await redis.get(user)));
     } catch (error) {
       console.error('Error loading content:', error);
     }
@@ -106,12 +111,6 @@ const App: Devvit.CustomPostComponent = (context) => {
 
   // Delay this until the intro is complete
   useState(loadContent);
-
-  if(isSolved) {
-    return (
-      <text size="xxlarge" weight="bold" alignment="center middle">SOLVED</text>
-    )
-  }
 
   // Show word state after loading is done and min X amount time
   if(word && solved) {
@@ -122,11 +121,21 @@ const App: Devvit.CustomPostComponent = (context) => {
       setSolved
     }
 
+
+  if(isSolved) {
+    return (
+      <vstack alignment="center middle" gap="medium" height={100}>
+        {word ? (<Phrase {...props} />) : ('') }
+        <text size="large" weight="bold" alignment="center middle">SOLVED</text>
+      </vstack>
+    )
+  }
+
     // need to add has voted flag for guess button
     return (
       <vstack alignment="center middle" gap="medium" height={100}>
         {word ? (<Phrase {...props} />) : ('') }
-        <Guess {...props} />
+        {hasGuessed ? (<Guessed />) : (<Guess {...props} />)}
       </vstack>
     )
   }

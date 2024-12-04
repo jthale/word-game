@@ -1,12 +1,7 @@
 import { Devvit, FormKey, UIClient, useForm } from '@devvit/public-api';
 import { Letter } from './components/letter.js';
 import { key, userKey } from './helpers.js';
-
-export type WordProps = {
-    word: string;
-    solved: string;
-    setSolved: (solved: string) => void;
-}
+import { Props } from './main.js';
 
 const checkGuess = (word: string, guess: string, solved: string): string => {
     const solvedArray = solved.toUpperCase().split("");
@@ -26,7 +21,7 @@ const checkGuess = (word: string, guess: string, solved: string): string => {
     return solvedArray.join('');
 }
 
-export const Guess: Devvit.BlockComponent<WordProps> = ({word, solved, setSolved}, {redis, ui, userId, postId}) => {
+export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved}, {redis, ui, userId, postId}) => {
 
     const user = userKey(userId, postId);
 
