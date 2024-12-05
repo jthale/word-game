@@ -65,7 +65,7 @@ export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved}, {
       );
 
     return (
-        <button size="medium" appearance="primary"
+        <button size="medium" appearance='bordered'
             onPress={() => { ui.showForm(GuessForm); }}>
             Guess
         </button>

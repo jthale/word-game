@@ -5,7 +5,8 @@ import { Preview } from './preview.js';
 import { key, userKey, startingSolver } from './helpers.js';
 import { Phrase } from './phrase.js';
 import { Guess } from './guess.js';
-import { Guessed } from './components/guessed.js'
+import { Guessed } from './components/guessed.js';
+import { Divider } from './components/divider.js';
 
 Devvit.configure({
   redis: true,
@@ -121,20 +122,21 @@ const App: Devvit.CustomPostComponent = (context) => {
       setSolved
     }
 
-
-  if(isSolved) {
-    return (
-      <vstack alignment="center middle" gap="medium" height={100}>
-        {word ? (<Phrase {...props} />) : ('') }
-        <text size="large" weight="bold" alignment="center middle">SOLVED</text>
-      </vstack>
-    )
-  }
+    if(isSolved) {
+      return (
+        <vstack alignment="center middle" gap="medium" height={100}>
+          {word ? (<Phrase {...props} />) : ('') }
+          <Divider />
+          <text size="large" weight="bold" alignment="center middle">SOLVED</text>
+        </vstack>
+      )
+    }
 
     // need to add has voted flag for guess button
     return (
       <vstack alignment="center middle" gap="medium" height={100}>
         {word ? (<Phrase {...props} />) : ('') }
+        <Divider />
         {hasGuessed ? (<Guessed />) : (<Guess {...props} />)}
       </vstack>
     )

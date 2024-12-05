@@ -1,52 +1,29 @@
 
 import { Devvit } from '@devvit/public-api';
+import { Props } from './main.js';
+import { Word } from './word.js';
+import { Divider } from './components/divider.js';
+
 
 export const Intro = (): JSX.Element => {
-  return (
-    <vstack alignment="center middle" height='200px' gap="medium">
-        <hstack alignment="center middle" gap='small'>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">C</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">O</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">M</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">M</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">U</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">N</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">I</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">T</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">Y</text>
-            </hstack>
-        </hstack>
-        <hstack alignment="center middle" gap='small'>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">G</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">A</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">M</text>
-            </hstack>
-            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black">
-                <text size="xxlarge" weight="bold" alignment="center middle">E</text>
-            </hstack>
-        </hstack>
-    </vstack>
-  );
+
+    const props1: Props = {
+        word: "Community",
+        solved: "Community",
+        setSolved: () => {},
+    }
+
+    const props2: Props = {
+        word: "Word",
+        solved: "Word",
+        setSolved: () => {},
+    }
+
+    return (
+        <vstack alignment="center middle" gap="small" height={100}>
+            <Word {...props1} />
+            <Divider />
+            <Word {...props2} />
+        </vstack>
+    )
 };

@@ -8,13 +8,18 @@ export type LetterProps = {
 
 export const Letter: Devvit.BlockComponent<LetterProps> = ({letter}) => {
 
-    const theme = "dark";
-
     if(letter == " ")
         return <></>;
 
+    if(letter == "_")
+        return (
+            <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" darkBorderColor='global-white' lightBorderColor='global-black'>
+                <text size="xxlarge" weight="bold" alignment="center middle" lightColor='global-black' darkColor='global-white'>{letter}</text>
+            </hstack>
+        );
+
     return (
-        <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small" borderColor="global-black" darkBackgroundColor='global-white' lightBackgroundColor='global-black'>
+        <hstack width="30px" height="40px" alignment="center middle" gap="none" border="thick" cornerRadius="small"  darkBorderColor='global-white' lightBorderColor='global-black' darkBackgroundColor='global-white' lightBackgroundColor='global-black'>
             <text size="xxlarge" weight="bold" alignment="center middle" lightColor='global-white' darkColor='global-black'>{letter}</text>
         </hstack>
     );

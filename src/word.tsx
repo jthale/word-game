@@ -15,7 +15,7 @@ export const Word: Devvit.BlockComponent<WordProps> = ({word}, {redis, ui, userI
     });
 
     return (
-        <hstack alignment="center middle" gap='small' height='40px'>
+        <hstack alignment="center middle" gap="small" height='40px'>
             {letters}
         </hstack>
     );
