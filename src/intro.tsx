@@ -11,12 +11,14 @@ export const Intro = (): JSX.Element => {
         word: "Community",
         solved: "Community",
         setSolved: () => {},
+        setIsSolved: () => {}
     }
 
     const props2: Props = {
         word: "Word",
         solved: "Word",
         setSolved: () => {},
+        setIsSolved: () => {}
     }
 
     return (

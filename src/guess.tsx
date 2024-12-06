@@ -21,7 +21,7 @@ const checkGuess = (word: string, guess: string, solved: string): string => {
     return solvedArray.join('');
 }
 
-export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved}, {redis, ui, userId, postId}) => {
+export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved, setIsSolved}, {redis, ui, userId, postId}) => {
 
     const user = userKey(userId, postId);
 
@@ -34,33 +34,18 @@ export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved}, {
           acceptLabel: 'Next',
         },
         async (values) => {
-            // do stuff
-            console.log('Guess submitted: ' + values.guess);
-
             // store guess on redis
             await redis.set(user, values.guess.toUpperCase());
             
-            // check guess
+            // check guess & update
             const updatedSolve = checkGuess(word, values.guess, solved);
-
-            // update solved state with guess
             setSolved(updatedSolve);
-
-            const isSolved = word === solved;
-            console.log('isSolved:' + isSolved.toString());
+            setIsSolved(word === updatedSolve);
 
             // update redis solved state
             await redis.hSet(key('word', postId),{
-                'solved': updatedSolve, // get this in a function
-                'isSolved': isSolved.toString()
+                'solved': updatedSolve,
             });
-
-            // update local list of guesses with guess?
-            // OR update just count flag?
-
-            // flip has voted flag
-
-            // hide guess button
         }
       );
 

@@ -24,6 +24,7 @@ export type Props = {
   word: string;
   solved: string;
   setSolved: (solved: string) => void;
+  setIsSolved: (solved: boolean) => void;
 }
 
 const WordForm = Devvit.createForm(
@@ -97,29 +98,27 @@ const App: Devvit.CustomPostComponent = (context) => {
   const [solved, setSolved] = useState<string | undefined>(undefined);
   const [hasGuessed, setHasGuessed] = useState<boolean>(false);
 
-
-  // TODO: Reload every 20 sec with a timer indicator?
   const loadContent = async () => {
     try {
-      setIsSolved(await redis.hGet(key('word', postId), 'isSolved') === "true");
       setWord(await redis.hGet(key('word', postId), 'word'));
       setSolved(await redis.hGet(key('word', postId), 'solved'));
       setHasGuessed(!!(await redis.get(user)));
+
     } catch (error) {
       console.error('Error loading content:', error);
     }
   };
 
-  // Delay this until the intro is complete
   useState(loadContent);
+  setIsSolved(word === solved);
 
-  // Show word state after loading is done and min X amount time
+  // Show word state after loading
   if(word && solved) {
-    // Change to single props for all
     const props: Props = {
       word,
       solved,
-      setSolved
+      setSolved,
+      setIsSolved
     }
 
     if(isSolved) {
@@ -132,7 +131,6 @@ const App: Devvit.CustomPostComponent = (context) => {
       )
     }
 
-    // need to add has voted flag for guess button
     return (
       <vstack alignment="center middle" gap="medium" height={100}>
         {word ? (<Phrase {...props} />) : ('') }
