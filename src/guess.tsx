@@ -8,8 +8,6 @@ const checkGuess = (word: string, guess: string, solved: string): string => {
 
     solvedArray.forEach((letter, index) => {
         if(letter == '_') {
-            console.log("Check this index");
-
             if(guess.charAt(index).toUpperCase() === word.charAt(index).toUpperCase())
                 solvedArray[index] = word.charAt(index)
         }
@@ -21,7 +19,7 @@ const checkGuess = (word: string, guess: string, solved: string): string => {
     return solvedArray.join('');
 }
 
-export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved, setIsSolved}, {redis, ui, userId, postId}) => {
+export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved, setIsSolved, setHasGuessed}, {redis, ui, userId, postId}) => {
 
     const user = userKey(userId, postId);
 
@@ -41,6 +39,7 @@ export const Guess: Devvit.BlockComponent<Props> = ({word, solved, setSolved, se
             const updatedSolve = checkGuess(word, values.guess, solved);
             setSolved(updatedSolve);
             setIsSolved(word === updatedSolve);
+            setHasGuessed(true);
 
             // update redis solved state
             await redis.hSet(key('word', postId),{

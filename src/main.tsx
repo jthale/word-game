@@ -25,6 +25,7 @@ export type Props = {
   solved: string;
   setSolved: (solved: string) => void;
   setIsSolved: (solved: boolean) => void;
+  setHasGuessed: (solved: boolean) => void;
 }
 
 const WordForm = Devvit.createForm(
@@ -118,7 +119,8 @@ const App: Devvit.CustomPostComponent = (context) => {
       word,
       solved,
       setSolved,
-      setIsSolved
+      setIsSolved,
+      setHasGuessed
     }
 
     if(isSolved) {
