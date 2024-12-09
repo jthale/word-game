@@ -2,6 +2,8 @@
 
 A game where members of a subreddit work together to guess a word or phrase. Each community member is allowed a single guess and any characters they guessed correctly are revealed to help the next member guess.
 
+![community-word-preview](https://github.com/user-attachments/assets/78e8561e-68bd-4a79-8692-98138d8c5b06)
+
 **Features**
 - Flexible, no minimum or maximum string lengths are defined at this time
 - Multilingual support, most languages should work however all user interface and in game text is currently in english
