@@ -2,6 +2,8 @@
 
 A game where members of a subreddit work together to guess a word or phrase. Each community member is allowed a single guess and any characters they guessed correctly are revealed to help the next member guess.
 
+Here is an example post:
+
 ![community-word-preview](https://github.com/user-attachments/assets/78e8561e-68bd-4a79-8692-98138d8c5b06)
 
 **Features**
