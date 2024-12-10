@@ -13,5 +13,6 @@ Here is an example post:
 - Web / Mobile support, uses only reddit support blocks and forms to work seamlessly across devices
 
 **Road Map**
+- I18n, localization would be great to properly support additional languages.
 - Reddit Comments, will add a toggle to lets moderators post a comment for each guess.
 - Auto Updating Post, will test feasbility of updating posts automatically to ensures users are always seeing the most up to date solve. Currently if one users loads the post, then another user makes a guess the first user will not have the most up to date solve.
